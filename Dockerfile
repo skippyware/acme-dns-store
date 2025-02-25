@@ -12,7 +12,7 @@ COPY ./go.mod ./go.sum ./
 RUN go mod download
 
 COPY . .
-RUN go build -o /out/acme-dns-store
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /out/acme-dns-store
 
 
 FROM alpine:${ALPINE_VERSION}
